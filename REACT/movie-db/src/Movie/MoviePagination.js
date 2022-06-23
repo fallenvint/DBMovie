@@ -40,10 +40,20 @@ const MoviePagination = ({page, totalPage, onSetPage}) => {
 
     return (
         <div className="page-pagination">
-            <button className={cn('page', {'hide': page === 1})} onClick={() => onSetPage(1)}>
+            <button className={cn('page', {'hide': page === 1})} onClick={
+                () => {
+                    onSetPage(1, false);
+                    window.location.pathname = `1`;
+                }
+            }>
                 first
             </button>
-            <button className={cn('page separator', {'hide': page === 1})} onClick={() => onSetPage(page - 1)}>
+            <button className={cn('page separator', {'hide': page === 1})} onClick={
+                () => {
+                    onSetPage(page - 1, false);
+                    window.location.pathname = `${page - 1}`;
+                }
+            }>
                 prev
             </button>
             <span className={cn('separator', {'hide': page < 4})}>...</span>
@@ -53,10 +63,17 @@ const MoviePagination = ({page, totalPage, onSetPage}) => {
                         <button
                             className={
                                 cn('page', {
-                                    'current': pageObj[key] === page
+                                    'current': pageObj[key] === page,
+                                    'first': pageObj[key] === 1,
+                                    'last': pageObj[key] === totalPage
                                 })
                             }
-                            onClick={() => onSetPage(pageObj[key])}
+                            onClick={
+                                () => {
+                                    onSetPage(pageObj[key], false);
+                                    window.location.pathname = `${pageObj[key]}`;
+                                }
+                            }
                             key={index}
                         >
                             {pageObj[key]}
@@ -65,10 +82,20 @@ const MoviePagination = ({page, totalPage, onSetPage}) => {
                 })
             }
             <span className={cn('separator', {'hide': page > totalPage - 3})}>...</span>
-            <button className={cn('page separator', {'hide': page === totalPage})} onClick={() => onSetPage(page + 1)}>
+            <button className={cn('page separator', {'hide': page === totalPage})} onClick={
+                () => {
+                    onSetPage(page + 1, false);
+                    window.location.pathname = `${page + 1}`;
+                }
+            }>
                 next
             </button>
-            <button className={cn('page', {'hide': page === totalPage})} onClick={() => onSetPage(totalPage)}>
+            <button className={cn('page', {'hide': page === totalPage})} onClick={
+                () => {
+                    onSetPage(totalPage, false);
+                    window.location.pathname = `${totalPage}`;
+                }
+            }>
                 last
             </button>
         </div>

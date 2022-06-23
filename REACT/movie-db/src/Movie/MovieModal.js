@@ -6,7 +6,7 @@ import {faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 
 const posterUrl = 'https://image.tmdb.org/t/p/w342';
 
-const MovieModal = ({data, modal, favorites, onCreate, onSetPage, onAdd, onRemove}) => {
+const MovieModal = ({data, modal, favorites, onSetPage, onCreate, onAdd, onRemove}) => {
     let date = new Date(data.results[modal].release_date);
     let [favItem, setFavItem] = useState({});
 
@@ -21,7 +21,8 @@ const MovieModal = ({data, modal, favorites, onCreate, onSetPage, onAdd, onRemov
             });
             onCreate(modal + 1, true);
         } else {
-            onSetPage(data.page + 1);
+            window.location.pathname = data.page + 1;
+            onSetPage(data.page + 1, true);
             onCreate(0, true);
         }
     }, [onSetPage, onCreate, data, modal]);
@@ -31,7 +32,7 @@ const MovieModal = ({data, modal, favorites, onCreate, onSetPage, onAdd, onRemov
 
     useEffect(() => {
         document.title = data.results[modal].title;
-        window.location.hash = data.results[modal].title.toLowerCase().replace(/\s/g, '_').replace(':', '');
+        window.location.hash = `${modal}-${data.results[modal].title.toLowerCase().replace(/\s/g, '_').replace(':', '')}`;
         setFavItem({
             id: data.results[modal].id,
             title: data.results[modal].title,
@@ -39,7 +40,6 @@ const MovieModal = ({data, modal, favorites, onCreate, onSetPage, onAdd, onRemov
             poster_path: data.results[modal].poster_path
         });
     }, [data, modal]);
-
     return (
         <div className="modal" style={{backgroundImage: `url(${posterUrl + data.results[modal].backdrop_path})`}}>
             <div className="modal-container">

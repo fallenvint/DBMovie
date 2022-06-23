@@ -93,8 +93,8 @@ main {
 }
 
 .poster, .favorite-movie_poster, .modal-movie_poster {
-  width: 50%;
-  min-width: 125px;
+  width: 40%;
+  min-width: 120px;
 }
 
 .poster, .favorite {
@@ -118,6 +118,7 @@ main {
 }
 
 .favorite-movie_info {
+  width: 60%;
   padding-left: 1em;
 }
 
@@ -254,6 +255,14 @@ main {
   color: #fff;
   background-color: #474d59!important;
   border-color: #474d59!important;
+}
+
+.page-pagination .current.first {
+  border-radius: 8px 0 0 8px;
+}
+
+.page-pagination .current.last {
+  border-radius: 0 8px 8px 0;
 }
 
 .hide {

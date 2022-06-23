@@ -1,16 +1,14 @@
-import React, {useState} from "react";
+import React from "react";
 import cn from 'classnames';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCirclePlay, faStar} from '@fortawesome/free-regular-svg-icons';
 import {faStar as farStar} from '@fortawesome/free-solid-svg-icons';
 
 const handleGoMainPage = () => {
-    window.location.href = window.location.href.split('#')[0];
+    window.location.href = window.location.origin;
 };
 
-const MovieHelper = ({onOpen}) => {
-    let [focus, setFocus] = useState(true);
-
+const MovieHelper = ({onOpen, favOpen}) => {
     return (
         <header>
             <div
@@ -24,16 +22,17 @@ const MovieHelper = ({onOpen}) => {
                 <div
                     className={
                         cn('menu-item button', {
-                            'active': !focus
+                            'active': favOpen
                         })
                     }
                     onClick={() => {
+                        window.location.hash = '';
+                        window.location.pathname = 'my_favorite';
                         onOpen();
-                        setFocus(false);
                     }}
                 >
                     <span>My favorite</span>
-                    <i><FontAwesomeIcon icon={focus ? faStar : farStar}/></i>
+                    <i><FontAwesomeIcon icon={favOpen ? farStar : faStar}/></i>
                 </div>
             </div>
         </header>

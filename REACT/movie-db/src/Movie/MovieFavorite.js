@@ -7,7 +7,6 @@ const MovieFavorite = () => {
 
     useEffect(() => {
         document.title = 'My favorites';
-        window.location.hash = 'my_favorite'
     });
 
     if (!!favorites.length) {
