@@ -93,7 +93,6 @@ const App = () => {
     useEffect(() => {
         if (window.location.pathname === '/my_favorite') {
             setFavOpen(true);
-
         } else if(!!pathName) {
             setPage({
                 number: pathName,

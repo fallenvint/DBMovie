@@ -21,9 +21,7 @@ const MovieModal = ({data, modal, favorites, onSetPage, onCreate, onAdd, onRemov
             });
             onCreate(modal + 1, true);
         } else {
-            window.location.pathname = data.page + 1;
             onSetPage(data.page + 1, true);
-            onCreate(0, true);
         }
     }, [onSetPage, onCreate, data, modal]);
     const handleAddFav = useCallback(() => onAdd(favItem), [onAdd, favItem]);
